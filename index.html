@@ -42,6 +42,8 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+
 </head>
 
 <body>
@@ -230,7 +232,7 @@
               <div class="portfolio-links">
                 <a rel="noopener" href="assets/img/portfolio/portfolio-4-full.png" data-gall="portfolioGallery"
                   class="venobox" title="Mize Garden"><i class="bx bx-plus"></i></a>
-                <a rel="noopener" href="https://www.vitamart.ca/" title="More Details"><i class="bx bx-link"></i></a>
+                <a rel="noopener" href="https://www.vitamart.ca/" title="More Details" target="_blank"><i class="bx bx-link"></i></a>
               </div>
             </div>
           </div>
@@ -242,7 +244,7 @@
               <div class="portfolio-links">
                 <a rel="noopener" href="assets/img/portfolio/portfolio-5-full.png" data-gall="portfolioGallery"
                   class="venobox" title="Chiro Slumber"><i class="bx bx-plus"></i></a>
-                <a rel="noopener" href="https://www.klingel.de/" title="More Details"><i class="bx bx-link"></i></a>
+                <a rel="noopener" href="https://www.klingel.de/" title="More Details" target="_blank"><i class="bx bx-link"></i></a>
               </div>
             </div>
           </div>
@@ -254,7 +256,7 @@
               <div class="portfolio-links">
                 <a rel="noopener" href="assets/img/portfolio/portfolio-6-full.jpg" data-gall="portfolioGallery"
                   class="venobox" title="Duradry"><i class="bx bx-plus"></i></a>
-                <a rel="noopener" href="https://www.qvc.de/" title="More Details"><i class="bx bx-link"></i></a>
+                <a rel="noopener" href="https://www.qvc.de/" title="More Details" target="_blank"><i class="bx bx-link"></i></a>
               </div>
             </div>
           </div>
@@ -511,7 +513,7 @@
             </div>
           </div>
 
-          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" id="sendemail">
             <form name="contact" method="POST" data-netlify="true" class="email-form">
               <div class="form-group">
                 <label for="name">Your Name: </label>
@@ -591,6 +593,23 @@
       js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+
+    const form  = document.getElementById('sendemail');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      Email.send({
+        Host: "smtp.gmail.com",
+        Username : document.getElementById('name').value,
+        To : 'cedrichata@gmail.com',
+        From : document.getElementById('email').value,
+        Subject : "CV",
+        Body : document.getElementById('message').value,
+        }).then(
+          message => alert("mail sent successfully")
+        );
+        // handle the form data
+    });
   </script>
 
   <!--Saikat Roy Protfolio Website template-->
